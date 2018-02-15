@@ -1,3 +1,4 @@
+import boto3
 import json
 import requests
 import pandas as pd
@@ -19,8 +20,20 @@ class Stock_Analyzer():
 		pass
 
 
+	# Takes string to test sentiment
+	# Returns {
+	# 	"Positive|Negative|Mixed|Neutral": "Number between 0-1"
+	# }
 	def get_sentiment_analysis(self, string):
-		pass
+		session = boto3.Session(profile_name='stock_sentiment')
+		comprehend = session.client(service_name='comprehend', region_name='us-west-2')
+		sentiment_response = comprehend.detect_sentiment(Text = string, LanguageCode="en")
+		sentiment = sentiment_response["Sentiment"]
+		
+		# Get highest score from response
+		sentiment = sentiment[0] + sentiment[1:].lower()
+		sentiment_score = {sentiment: sentiment_response["SentimentScore"][sentiment]}
+		return sentiment_score
 	
 	def save_to_csv(self):
 		pass
