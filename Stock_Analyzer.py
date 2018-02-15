@@ -1,9 +1,6 @@
 import json
 import requests
-
-
-
-
+import pandas as pd
 
 class Stock_Analyzer():
 
@@ -15,12 +12,15 @@ class Stock_Analyzer():
 	def get_twitter_info(self):
 		pass
 
-	def get_google_finance(self):
+	def get_stock_info(self):
 		pass
 
-	def get_google_news(self):
+	def get_stock_news(self):
 		pass
 
 
 	def get_sentiment_analysis(self, string):
+		pass
+	
+	def save_to_csv(self):
 		pass
