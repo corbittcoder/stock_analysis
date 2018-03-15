@@ -60,7 +60,7 @@ class Stock_Analyzer():
 
 
 	def get_stock_news(self):
-		api_key = '4e9794825e034ddbb7439ae9b595ad31'
+		api_key = ''
 
 		# select date
 		date = '2018-02-05'
