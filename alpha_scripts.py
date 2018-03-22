@@ -31,17 +31,10 @@ def get_company_daily_price(symbol):
 
 		company_percent_change = utils.get_percent_change(company_previous_day_close, company_next_day_close)
 		index_percent_change = utils.get_percent_change(index_previous_day_close, index_next_day_close)
-<<<<<<< HEAD
 
 		diff = company_percent_change - index_percent_change
 		differences.append(diff)
-	data = {
-=======
-		
-		diff = company_percent_change - index_percent_change
-		differences.append(diff)
 	data = { 
->>>>>>> 89f6c99fe11e019a7c314ceb9cb82a7456b9569d
 		'dates': keys_company[:-1],
 		'percent_difference': differences
 	}
