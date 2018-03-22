@@ -2,7 +2,8 @@ import boto3
 import json
 import requests
 import pandas as pd
-from twitter import Twitter, OAuth, TwitterHTTPError, TwitterStream
+#from twitter import Twitter, OAuth, TwitterHTTPError, TwitterStream
+from alpha_scripts import get_moving_averages
 
 class Stock_Analyzer():
 
@@ -45,17 +46,8 @@ class Stock_Analyzer():
 			if tweet_count <= 0:
 				break
 
-	def get_stock_info(self):
-		api_key = ''
-		symbol = 'MSFT'
-
-		url = ("https://www.alphavantage.co/query?"
-			   "function=TIME_SERIES_DAILY&"
-			   "symbol=" + symbol +
-			   "&apikey=" + api_key)
-
-		response = requests.get(url)
-		dictionary = response.json()
+	def get_stock_info(self, company_symbol):
+		return get_moving_averages(company_symbol)
 
 
 
@@ -100,5 +92,5 @@ class Stock_Analyzer():
 		sentiment_score = {sentiment: sentiment_response["SentimentScore"][sentiment]}
 		return sentiment_score
 
-	def save_to_csv(self):
-		pass #implement
+	def save_to_csv(self, dataframe):
+		dataframe.to_csv('data.csv')
