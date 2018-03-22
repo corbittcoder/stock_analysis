@@ -46,7 +46,7 @@ class Stock_Analyzer():
 				break
 
 	def get_stock_info(self):
-		api_key = 'ZXKLYB9LPX4Q4RXN'
+		api_key = ''
 		symbol = 'MSFT'
 
 		url = ("https://www.alphavantage.co/query?"
