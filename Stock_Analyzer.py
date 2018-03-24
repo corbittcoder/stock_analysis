@@ -3,7 +3,7 @@ import json
 import requests
 import pandas as pd
 #from twitter import Twitter, OAuth, TwitterHTTPError, TwitterStream
-from alpha_scripts import get_stock_data
+from alpha_scripts import get_stock_data, get_index_moving_averages
 
 class Stock_Analyzer():
 
@@ -13,8 +13,8 @@ class Stock_Analyzer():
 		#self.google_finance_key = ""
 		pass
 
-	def get_dates(company_symbol):
-		df = get_stock_data(company_symbol)
+	def get_dates(self):
+		df = get_index_moving_averages()
 		dates = df.index.values
 		return dates
 
