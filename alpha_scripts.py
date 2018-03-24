@@ -4,6 +4,8 @@ import pandas as pd
 from alpha_vantage.timeseries import TimeSeries
 from alpha_vantage.techindicators import TechIndicators
 
+_close = "4. close"
+
 def get_sma(symbol):
 	ti = TechIndicators(key='GU7Q0FX7R704IRRZ', output_format='pandas')
 	all_data, meta = ti.get_sma(symbol, interval='daily', series_type='close')
@@ -34,7 +36,7 @@ def get_company_daily_price(symbol):
 
 		diff = company_percent_change - index_percent_change
 		differences.append(diff)
-	data = { 
+	data = {
 		'dates': keys_company[:-1],
 		'percent_difference': differences
 	}
@@ -57,4 +59,10 @@ def get_moving_averages(company_symbol):
 	comp_df = get_comp_moving_averages(company_symbol)
 	index_df = get_index_moving_averages()
 	combined = pd.concat([comp_df, index_df], axis=1)
+	return combined
+
+def get_stock_data(company_symbol):
+	moving_averages_df = get_moving_averages(company_symbol)
+	percent_changed_df = get_company_daily_price(company_symbol)
+	combined = pd.concat([moving_averages_df, percent_changed_df], axis=1)
 	return combined
