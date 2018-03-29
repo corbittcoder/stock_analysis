@@ -18,7 +18,6 @@ class Stock_Analyzer():
 		dates = df.index.values
 		return dates
 
-
 	def get_twitter_info(self):
 		ACCESS_TOKEN = ''
 		ACCESS_SECRET = ''
