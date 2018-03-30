@@ -7,7 +7,7 @@ import timeit
 import re
 import numpy as np
 
-NUM_DAILY_TWEETS = 10
+NUM_DAILY_TWEETS = 100
 COMPANY = 'Amazon'
 
 def clean_tweet(tweet):
@@ -53,7 +53,7 @@ def get_day_tweets(date):
 def get_twitter_sentiments(dates):
     print '\nNumber of daily tweets: ', NUM_DAILY_TWEETS, '\n'
     mean_sentiments = []
-    for date in dates[0:5]:
+    for date in dates:
         start = timeit.default_timer()
         print 'Day: ', date
         tweets = get_day_tweets(date)
@@ -72,7 +72,7 @@ def get_twitter_sentiments(dates):
 def get_twitter_data():
     dates = get_dates()
     sentiments = get_twitter_sentiments(dates)
-    df = pd.DataFrame(sentiments, dates[0:5], ['Sentiment'])
+    df = pd.DataFrame(sentiments, dates, ['Sentiment'])
     return df
 
 if __name__ == '__main__':
